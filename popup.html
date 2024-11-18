@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title></title>
+    <link href="popup.css" rel="stylesheet">
+    <style>
+        #mainPanel {
+            display: none;
+        }
+
+        .show-important {
+            display: block !important;
+        }
+
+        .auth-container {
+            width: 450px;
+            height: 590px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 128px;
+            height: 128px;
+            margin: 0 auto;
+            margin-top: -100px;
+        }
+
+        .auth-container .input {
+            width: 300px;
+            height: 40px;
+            box-shadow: 0;
+            margin: 100px 40px 20px 40px;
+            padding: 4px 6px;
+            border: 1px solid #ccc;
+            /* 默认边框 */
+            border-radius: 8px;
+        }
+
+        input:focus {
+            outline: none;
+            /* 移除默认的蓝色外边框 */
+            border-color: #FF6400 !important;
+            /* 设置新的边框颜色，这里用了绿色 */
+
+        }
+
+        .title {
+            font-size: 20px;
+            color: #222;
+        }
+
+        .submit {
+            width: 100px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            border-radius: 15px;
+            border: 1px solid #FF6400;
+            background-color: #FF6400;
+            color: white !important;
+        }
+
+        .ybey-xinxi,
+        .open-in-new-tab {
+            display: none;
+            visibility: hidden;
+        }
+
+        .title-left,
+        .manger-header {
+            color: #FF6400;
+        }
+
+        .el-header span {
+            color: #FF6400;
+        }
+
+        * {
+            color: #FF6400 !important
+        }
+
+        .video-group .detail .type {
+            background-color: #fff !important;
+        }
+
+        .el-slider__bar {
+            background-color: #FF6400 !important
+        }
+
+        .el-checkbox__input.is-checked .el-checkbox__inner,
+        .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+            background-color: #FF6400 !important;
+            border-color: #FF6400 !important;
+        }
+
+        .img-group .sel {
+            border: 1px solid #FF6400;
+        }
+
+        .video-group .detail .buttons .defs {
+            background-color: #FF6400 !important;
+            color: #fff !important;
+        }
+
+        /* 修改选中状态下的背景色 */
+        .el-radio__input.is-checked .el-radio__inner {
+            border-color: #FF6400;
+            background: #FF6400;
+        }
+
+        /* 修改选中状态下的点的颜色 */
+        .el-radio__input.is-checked .el-radio__inner::after {
+            background: #fff;
+            /* 如果需要改变小圆点的颜色，可以在这里设置 */
+        }
+
+        /* 可选：修改文字颜色 */
+        .el-radio__input.is-checked+.el-radio__label {
+            color: #FF6400;
+        }
+
+        /* 修改滑块轨道已选择部分的颜色 */
+        .el-slider__bar {
+            background-color: #FF6400;
+            /* 选择你想要的颜色 */
+        }
+
+        /* 修改滑块按钮的颜色 */
+        .el-slider__button {
+            border-color: #FF6400;
+            /* 边框颜色 */
+        }
+
+        /* 修改滑块按钮悬停时的颜色 */
+        .el-slider__button:hover {
+            border-color: darken(#FF6400, 10%);
+            /* 边框颜色加深 */
+            background-color: darken(#FF6400, 10%);
+            /* 背景颜色加深 */
+        }
+
+        /* 修改滑块轨道未选择部分的颜色（可选） */
+        .el-slider__runway {
+            background-color: #e4e7ed;
+            /* 默认为浅灰色，可根据需要调整 */
+        }
+
+        /* 修改按钮的默认样式 */
+        .el-button {
+            /* background-color: #FF6400 !important; 背景色 */
+            border-color: #FF6400 !important;
+            /* 边框色 */
+            color: #ffffff;
+            /* 文本颜色 */
+        }
+
+        /* 修改按钮悬停时的样式 */
+        .el-button:hover {
+            /* background-color: #FF6400 !important;  */
+            border-color: #FF6400 !important;
+            /* 悬停时的边框色 */
+            color: #ffffff;
+            /* 悬停时的文本颜色 */
+        }
+
+        /* 修改按钮激活时的样式 */
+        .el-button:active {
+            background-color: #FF6400 !important;
+            /*  */
+            border-color: #FF6400 !important;
+            /* 激活时的边框色 */
+            color: #ffffff !important;
+            /* 激活时的文本颜色 */
+        }
+
+        .el-button--primary {
+            background-color: white !important;
+        }
+
+        /* 修改按钮禁用时的样式（可选） */
+        .el-button.is-disabled {
+            background-color: #e4e7ed;
+            /* 禁用时的背景色 */
+            border-color: #e4e7ed;
+            /* 禁用时的边框色 */
+            color: #c0c4cc;
+            /* 禁用时的文本颜色 */
+        }
+        .type-button .num {
+            background-color: transparent !important;
+        }
+    </style>
+</head>
+
+<body style="margin: 0px">
+
+    <!-- 验证区域 -->
+    <div id="authSection" class="auth-container">
+        <img class="logo" src="./Download.png" alt="">
+        <div class="title">Download All</div>
+        <input class="input" type="password" id="authInput" placeholder="请输入授权码">
+        <button class="submit" id="authBtn">验证</button>
+    </div>
+
+    <div id="app">
+
+
+    </div>
+    <script src="pop.js"></script>
+    <script src="vendors~feedback~imagePage~options~output~popup.bundle.js"></script>
+    <script src="vendors~background~imagePage~options~popup.bundle.js"></script>
+    <script src="vendors~imagePage~popup.bundle.js"></script>
+    <script src="popup.bundle.js"></script>
+</body>
+
+</html>
